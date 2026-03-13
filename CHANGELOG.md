@@ -1,5 +1,16 @@
 # Sable Client Changelog
 
+## 1.8.0 (2026-03-13)
+
+### Features
+
+* Show group DM participants with triangle avatar layout. Group DMs now display up to 3 member avatars in a triangle formation (most recent sender on top), with bot filtering and DM count badge support. <!-- commit:c6bb5ed -->
+
+### Fixes
+
+* Fix bubble layout messages overflowing off the screen with embeds/images. <!-- commit:91febe0 -->
+* Fix cosmetics tab crashing if global/room/space pronouns weren't already set. <!-- commit:dc0dc57 -->
+
 ## 1.7.0 (2026-03-12)
 
 ### Features
