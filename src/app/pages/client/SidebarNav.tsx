@@ -1,7 +1,8 @@
 import { useRef } from 'react';
-import { Scroll } from 'folds';
+import { color, Scroll } from 'folds';
 
-import { Sidebar, SidebarContent, SidebarStackSeparator, SidebarStack } from '$components/sidebar';
+import { Sidebar, SidebarContent, SidebarStackSeparator, SidebarStack, ActiveIndicator, ActiveIndicatorProvider } from '$components/sidebar';
+import { BackgroundGlow } from '$components/BackgroundGlow';
 import {
   DirectTab,
   DirectDMsList,
@@ -19,27 +20,34 @@ export function SidebarNav() {
   const scrollRef = useRef<HTMLDivElement>(null);
 
   return (
+    <ActiveIndicatorProvider>
     <Sidebar>
+      <BackgroundGlow color={color.Surface.Container} style={{ position: 'absolute', inset: 0 }} />
+      <ActiveIndicator />
       <SidebarContent
-        scrollable={
-          <Scroll ref={scrollRef} variant="Background" size="0">
-            <SidebarStack>
+        topSticky={
+          <>
+            <SidebarStack shield>
               <HomeTab />
               <DirectTab />
-              <DirectDMsList />
             </SidebarStack>
-            <SpaceTabs scrollRef={scrollRef} />
-            <SidebarStackSeparator />
-            <SidebarStack>
+          </>
+        }
+        scrollable={
+          <Scroll ref={scrollRef} variant="Background" size="0" style={{ display: 'flex', flexDirection: 'column' }}>
+            <SidebarStack shield fill="Background" style={{ flex: 1, justifyContent: 'flex-start' }}>
+              <DirectDMsList />
+              <SpaceTabs scrollRef={scrollRef} />
+              <div style={{ flexGrow: 1 }} />
+              <SidebarStackSeparator />
               <ExploreTab />
               <CreateTab />
             </SidebarStack>
           </Scroll>
         }
-        sticky={
+        bottomSticky={
           <>
-            <SidebarStackSeparator />
-            <SidebarStack>
+            <SidebarStack shield>
               <SearchTab />
               <UnverifiedTab />
               <InboxTab />
@@ -49,5 +57,6 @@ export function SidebarNav() {
         }
       />
     </Sidebar>
+    </ActiveIndicatorProvider>
   );
 }

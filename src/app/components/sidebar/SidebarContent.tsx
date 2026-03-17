@@ -2,18 +2,18 @@ import { ReactNode } from 'react';
 import { Box } from 'folds';
 
 type SidebarContentProps = {
+  topSticky?: ReactNode;
   scrollable: ReactNode;
-  sticky: ReactNode;
+  bottomSticky?: ReactNode;
 };
-export function SidebarContent({ scrollable, sticky }: SidebarContentProps) {
+export function SidebarContent({ topSticky, scrollable, bottomSticky }: SidebarContentProps) {
   return (
     <>
+      {topSticky && <Box direction="Column" shrink="No">{topSticky}</Box>}
       <Box direction="Column" grow="Yes">
         {scrollable}
       </Box>
-      <Box direction="Column" shrink="No">
-        {sticky}
-      </Box>
+      {bottomSticky && <Box direction="Column" shrink="No">{bottomSticky}</Box>}
     </>
   );
 }
