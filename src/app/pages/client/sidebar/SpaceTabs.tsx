@@ -449,7 +449,6 @@ function SpaceTab({
                 data-id={space.roomId}
                 ref={triggerRef}
                 size="300"
-                fill="Surface"
                 onClick={onClick}
                 onContextMenu={handleContextMenu}
               >
@@ -530,11 +529,9 @@ function OpenedSpaceFolder({ folder, onClose, children }: OpenedSpaceFolderProps
       data-drop-below={orderBelow === 'reorder-below'}
     >
       <SidebarFolderDropTarget ref={aboveTargetRef} position="Top" />
-      <SidebarAvatar size="300">
-        <IconButton data-id={folder.id} size="300" variant="Background" onClick={onClose}>
-          <Icon size="400" src={Icons.ChevronTop} filled />
-        </IconButton>
-      </SidebarAvatar>
+      <IconButton data-id={folder.id} size="300" variant="Background" radii="Pill" onClick={onClose}>
+        <Icon size="200" src={Icons.ChevronTop} filled />
+      </IconButton>
       {children}
       <SidebarFolderDropTarget ref={belowTargetRef} position="Bottom" />
     </SidebarFolder>
@@ -819,7 +816,6 @@ export function SpaceTabs({ scrollRef }: SpaceTabsProps) {
   if (sidebarItems.length === 0) return null;
   return (
     <>
-      <SidebarStackSeparator />
       <SidebarStack>
         {sidebarItems.map((item) => {
           if (typeof item === 'object') {

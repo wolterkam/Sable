@@ -137,7 +137,7 @@ function DMItem({ room, selected }: DMItemProps) {
     <SidebarItem active={selected}>
       <SidebarItemTooltip tooltip={room.name}>
         {(triggerRef) => (
-          <SidebarAvatar as="button" ref={triggerRef} size="300" fill="Surface" onClick={handleClick}>
+          <SidebarAvatar as="button" ref={triggerRef} size="300" onClick={handleClick}>
             {renderAvatar()}
           </SidebarAvatar>
         )}
