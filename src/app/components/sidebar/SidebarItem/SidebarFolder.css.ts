@@ -29,6 +29,7 @@ export const SidebarFolder = recipe({
         gap: toRem(2),
         borderRadius: config.radii.R400,
         aspectRatio: '1',
+        padding: config.space.S200,
       },
       Open: {
         paddingLeft: 0,

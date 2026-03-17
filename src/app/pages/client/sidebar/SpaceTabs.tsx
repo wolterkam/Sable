@@ -570,6 +570,7 @@ function ClosedSpaceFolder({
         <SidebarItem
           active={selected}
           ref={handlerRef}
+          style={{ width: '100%' }}
           aria-disabled={disabled}
           data-drop-child={dropType === 'make-child'}
           data-drop-above={dropType === 'reorder-above'}

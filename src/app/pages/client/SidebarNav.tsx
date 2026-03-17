@@ -48,7 +48,7 @@ export function SidebarNav() {
             }}
           >
             <div ref={scrollRef} className={sidebarCss.SidebarScrollArea}>
-              <SidebarStack fill="Background" style={{ justifyContent: 'flex-start' }}>
+              <SidebarStack fill="Background" style={{ justifyContent: 'flex-start', minHeight: '100%' }}>
                 <DirectDMsList />
                 <SpaceTabs scrollRef={scrollRef} />
                 <div style={{ flexGrow: 1 }} />

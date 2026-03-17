@@ -65,6 +65,7 @@ export const SidebarItemBadge = recipe({
       position: 'absolute',
       zIndex: 1,
       lineHeight: 0,
+      transform: `translateX(${toRem(4)})`,
     },
   ],
   variants: {
