@@ -448,7 +448,8 @@ function SpaceTab({
                 as="button"
                 data-id={space.roomId}
                 ref={triggerRef}
-                size={folder ? '300' : '400'}
+                size="300"
+                fill="Surface"
                 onClick={onClick}
                 onContextMenu={handleContextMenu}
               >
@@ -457,9 +458,7 @@ function SpaceTab({
                   uniformIcons
                   src={getRoomAvatarUrl(mx, space, 96, useAuthentication) ?? undefined}
                   alt={space.name}
-                  renderFallback={() => (
-                    <Text size={folder ? 'H6' : 'H4'}>{nameInitials(space.name, 2)}</Text>
-                  )}
+                  renderFallback={() => <Text size="H6">{nameInitials(space.name, 2)}</Text>}
                 />
               </SidebarAvatar>
             )}
