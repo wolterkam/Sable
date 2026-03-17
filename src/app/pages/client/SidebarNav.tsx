@@ -1,8 +1,9 @@
 import { useRef } from 'react';
-import { color, Scroll } from 'folds';
+import { color } from 'folds';
 
 import { Sidebar, SidebarContent, SidebarStackSeparator, SidebarStack, ActiveIndicator, ActiveIndicatorProvider } from '$components/sidebar';
 import { BackgroundGlow } from '$components/BackgroundGlow';
+import * as sidebarCss from '$components/sidebar/Sidebar.css';
 import {
   DirectTab,
   DirectDMsList,
@@ -34,16 +35,29 @@ export function SidebarNav() {
           </>
         }
         scrollable={
-          <Scroll ref={scrollRef} variant="Background" size="0" style={{ display: 'flex', flexDirection: 'column' }}>
-            <SidebarStack shield fill="Background" style={{ flex: 1, justifyContent: 'flex-start' }}>
-              <DirectDMsList />
-              <SpaceTabs scrollRef={scrollRef} />
-              <div style={{ flexGrow: 1 }} />
-              <SidebarStackSeparator />
-              <ExploreTab />
-              <CreateTab />
-            </SidebarStack>
-          </Scroll>
+          <SidebarStack
+            shield
+            fill="Background"
+            style={{
+              flex: 1,
+              minHeight: 0,
+              padding: 0,
+              justifyContent: 'flex-start',
+              alignItems: 'stretch',
+              overflow: 'hidden',
+            }}
+          >
+            <div ref={scrollRef} className={sidebarCss.SidebarScrollArea}>
+              <SidebarStack fill="Background" style={{ justifyContent: 'flex-start' }}>
+                <DirectDMsList />
+                <SpaceTabs scrollRef={scrollRef} />
+                <div style={{ flexGrow: 1 }} />
+                <SidebarStackSeparator />
+                <ExploreTab />
+                <CreateTab />
+              </SidebarStack>
+            </div>
+          </SidebarStack>
         }
         bottomSticky={
           <>

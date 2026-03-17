@@ -10,7 +10,7 @@ export function SidebarContent({ topSticky, scrollable, bottomSticky }: SidebarC
   return (
     <>
       {topSticky && <Box direction="Column" shrink="No">{topSticky}</Box>}
-      <Box direction="Column" grow="Yes">
+      <Box direction="Column" grow="Yes" style={{ minHeight: 0 }}>
         {scrollable}
       </Box>
       {bottomSticky && <Box direction="Column" shrink="No">{bottomSticky}</Box>}

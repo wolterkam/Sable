@@ -14,3 +14,17 @@ export const Sidebar = style([
     color: color.Background.OnContainer,
   },
 ]);
+
+export const SidebarScrollArea = style({
+  width: '100%',
+  minHeight: 0,
+  flex: 1,
+  overflowY: 'auto',
+  overflowX: 'hidden',
+  scrollbarWidth: 'none',
+  selectors: {
+    '&::-webkit-scrollbar': {
+      display: 'none',
+    },
+  },
+});
