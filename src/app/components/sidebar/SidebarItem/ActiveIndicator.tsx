@@ -14,10 +14,33 @@ export function ActiveIndicator() {
     if (!indicator) return;
     const sidebar = indicator.parentElement;
     if (!sidebar) return;
+    const scrollables = sidebar.querySelectorAll<HTMLElement>(
+      '[class*="Scroll"], [class*="SidebarScrollArea"]'
+    );
+
+    const isVisibleWithinAncestors = (active: HTMLElement) => {
+      const activeRect = active.getBoundingClientRect();
+      const sidebarRect = sidebar.getBoundingClientRect();
+
+      if (activeRect.bottom <= sidebarRect.top || activeRect.top >= sidebarRect.bottom) {
+        return false;
+      }
+
+      return Array.from(scrollables).every((el) => {
+        if (!el.contains(active)) return true;
+
+        const rect = el.getBoundingClientRect();
+        return activeRect.bottom > rect.top && activeRect.top < rect.bottom;
+      });
+    };
 
     const update = (animate = true) => {
       const active = ctx.getActiveElement();
       if (!active) {
+        indicator.style.opacity = '0';
+        return;
+      }
+      if (!isVisibleWithinAncestors(active)) {
         indicator.style.opacity = '0';
         return;
       }
@@ -39,9 +62,6 @@ export function ActiveIndicator() {
     update();
 
     // Track scroll within the sidebar
-    const scrollables = sidebar.querySelectorAll<HTMLElement>(
-      '[class*="Scroll"], [class*="SidebarScrollArea"]'
-    );
     const handleScroll = () => {
       scrollingRef.current = true;
       if (restoreTransitionRef.current !== null) {
