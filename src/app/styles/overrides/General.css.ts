@@ -28,8 +28,8 @@ globalStyle(
 
 globalStyle(
   `
-    button:hover:not(div[class*='SidebarItem_SidebarItem'] button), 
-    [role="button"]:hover:not(div[class*='SidebarItem_SidebarItem'] [role="button"])
+    button:hover:not(div[class*='SidebarItem_SidebarItem'] button):not(div[class*='SidebarFolder_SidebarFolder'] button), 
+    [role="button"]:hover:not(div[class*='SidebarItem_SidebarItem'] [role="button"]):not(div[class*='SidebarFolder_SidebarFolder'] [role="button"])
 `,
   {
     transform: 'translateY(-1px)',
