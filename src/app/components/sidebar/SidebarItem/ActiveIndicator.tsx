@@ -55,6 +55,7 @@ export function ActiveIndicator() {
       }, 80);
     };
     scrollables.forEach((el) => el.addEventListener('scroll', handleScroll, { passive: true }));
+    window.addEventListener('resize', update, { passive: true });
 
     return () => {
       unsubscribe();
@@ -62,6 +63,7 @@ export function ActiveIndicator() {
         clearTimeout(restoreTransitionRef.current);
       }
       scrollables.forEach((el) => el.removeEventListener('scroll', handleScroll));
+      window.removeEventListener('resize', update);
     };
   }, [ctx]);
 
