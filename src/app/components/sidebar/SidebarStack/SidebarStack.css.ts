@@ -1,5 +1,5 @@
 import { recipe, RecipeVariants } from '@vanilla-extract/recipes';
-import { color, config, DefaultReset, toRem } from 'folds';
+import { color, config, DefaultReset } from 'folds';
 
 export const SidebarStack = recipe({
   base: [
@@ -27,6 +27,16 @@ export const SidebarStack = recipe({
         backgroundClip: 'padding-box',
         border: `0.5rem solid transparent`,
         borderRadius: `calc(${config.radii.R400} + 0.75rem)`,
+      },
+    },
+    scrollable: {
+      true: {
+        flex: 1,
+        minHeight: 0,
+        padding: 0,
+        justifyContent: 'flex-start',
+        alignItems: 'stretch',
+        overflow: 'hidden',
       },
     },
     fill: {

@@ -9,14 +9,12 @@ export function ActiveIndicator() {
   const scrollingRef = useRef(false);
 
   useEffect(() => {
-    if (!ctx) return;
+    if (!ctx) return undefined;
     const indicator = ref.current;
-    if (!indicator) return;
+    if (!indicator) return undefined;
     const sidebar = indicator.parentElement;
-    if (!sidebar) return;
-    const scrollables = sidebar.querySelectorAll<HTMLElement>(
-      '[data-sidebar-scroll-area]'
-    );
+    if (!sidebar) return undefined;
+    const scrollables = sidebar.querySelectorAll<HTMLElement>('[data-sidebar-scroll-area]');
 
     const isVisibleWithinAncestors = (active: HTMLElement) => {
       const activeRect = active.getBoundingClientRect();
@@ -53,7 +51,8 @@ export function ActiveIndicator() {
 
       const sidebarRect = sidebar.getBoundingClientRect();
       const activeRect = active.getBoundingClientRect();
-      const top = activeRect.top - sidebarRect.top + activeRect.height / 2 - indicator.offsetHeight / 2;
+      const top =
+        activeRect.top - sidebarRect.top + activeRect.height / 2 - indicator.offsetHeight / 2;
       indicator.style.opacity = '1';
       indicator.style.top = `${top}px`;
     };

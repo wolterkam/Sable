@@ -46,11 +46,6 @@ export const SidebarAvatar = recipe({
         height: toRem(42),
       },
     },
-    outlined: {
-      true: {
-        border: `${config.borderWidth.B300} solid ${color.Background.ContainerLine}`,
-      },
-    },
     ghost: {
       true: {
         selectors: {

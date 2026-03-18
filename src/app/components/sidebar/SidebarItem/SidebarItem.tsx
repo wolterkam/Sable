@@ -1,10 +1,10 @@
 import classNames from 'classnames';
 import { as, Avatar, Text, Tooltip, TooltipProvider, toRem } from 'folds';
 import { ComponentProps, ReactNode, RefCallback, useCallback } from 'react';
+import { ContainerColor, ContainerColorVariants } from '$styles/ContainerColor.css';
 import * as itemCss from './SidebarItem.css';
 import * as avatarCss from './SidebarAvatar.css';
 import * as folderCss from './SidebarFolder.css';
-import { ContainerColor, ContainerColorVariants } from '$styles/ContainerColor.css';
 import { useRegisterActive } from './ActiveIndicatorContext';
 
 type SidebarItemExtraProps = itemCss.SidebarItemVariants & {
@@ -19,7 +19,10 @@ export const SidebarItem = as<'div', SidebarItemExtraProps>(
       (el: HTMLDivElement | null) => {
         activeRef.current = el;
         if (typeof ref === 'function') ref(el);
-        else if (ref) (ref as React.MutableRefObject<HTMLElement | null>).current = el;
+        else if (ref) {
+          const currentRef = ref as React.MutableRefObject<HTMLElement | null>;
+          currentRef.current = el;
+        }
       },
       [ref, activeRef]
     );
@@ -78,10 +81,10 @@ type SidebarAvatarProps = avatarCss.SidebarAvatarVariants &
   };
 
 export const SidebarAvatar = as<'div', SidebarAvatarProps>(
-  ({ className, fill, size, outlined, ghost, active, radii, ...props }, ref) => (
+  ({ className, fill, size, ghost, active, radii, ...props }, ref) => (
     <Avatar
       className={classNames(
-        avatarCss.SidebarAvatar({ size, outlined, ghost, active }),
+        avatarCss.SidebarAvatar({ size, ghost, active }),
         !active && fill && ContainerColor({ variant: fill }),
         className
       )}
