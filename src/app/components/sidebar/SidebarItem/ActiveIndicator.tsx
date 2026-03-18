@@ -15,7 +15,7 @@ export function ActiveIndicator() {
     const sidebar = indicator.parentElement;
     if (!sidebar) return;
     const scrollables = sidebar.querySelectorAll<HTMLElement>(
-      '[class*="Scroll"], [class*="SidebarScrollArea"]'
+      '[data-sidebar-scroll-area]'
     );
 
     const isVisibleWithinAncestors = (active: HTMLElement) => {

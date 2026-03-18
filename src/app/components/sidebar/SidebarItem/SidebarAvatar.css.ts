@@ -12,8 +12,15 @@ export const SidebarAvatar = recipe({
         },
         'button&:hover': {
           transform: 'scale(1.1)',
-          '@media': {
-            '(prefers-reduced-motion: reduce)': {
+        },
+      },
+      '@media': {
+        '(prefers-reduced-motion: reduce)': {
+          selectors: {
+            'button&': {
+              transition: 'none',
+            },
+            'button&:hover': {
               transform: 'none',
             },
           },

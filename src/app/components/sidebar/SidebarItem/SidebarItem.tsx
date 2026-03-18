@@ -28,6 +28,7 @@ export const SidebarItem = as<'div', SidebarItemExtraProps>(
       <AsSidebarAvatarBox
         className={classNames(itemCss.SidebarItem({ active }), className)}
         data-active={active || undefined}
+        data-sidebar-item
         {...props}
         ref={combinedRef}
       />
@@ -95,6 +96,7 @@ export const SidebarFolder = as<'div', folderCss.SidebarFolderVariants>(
   ({ as: AsSidebarFolder = 'div', className, state, ...props }, ref) => (
     <AsSidebarFolder
       className={classNames(folderCss.SidebarFolder({ state }), className)}
+      data-sidebar-folder
       {...props}
       ref={ref}
     />

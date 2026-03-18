@@ -47,7 +47,11 @@ export function SidebarNav() {
               overflow: 'hidden',
             }}
           >
-            <div ref={scrollRef} className={sidebarCss.SidebarScrollArea}>
+            <div
+              ref={scrollRef}
+              className={sidebarCss.SidebarScrollArea}
+              data-sidebar-scroll-area
+            >
               <SidebarStack fill="Background" style={{ justifyContent: 'flex-start', minHeight: '100%' }}>
                 <DirectDMsList />
                 <SpaceTabs scrollRef={scrollRef} />

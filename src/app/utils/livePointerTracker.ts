@@ -1,17 +1,21 @@
 export type LivePointerSubscriber = (x: number, y: number) => void;
 
-const livePointerSubscribers: LivePointerSubscriber[] = [];
+const livePointerSubscribers = new Set<LivePointerSubscriber>();
 
 export const subscribeToLivePointer = (subscriber: LivePointerSubscriber) => {
-  livePointerSubscribers.push(subscriber);
+  livePointerSubscribers.add(subscriber);
+  if (livePointerSubscribers.size === 1) {
+    window.addEventListener('pointermove', handlePointerMove);
+  }
 };
 
 export const unsubscribeFromLivePointer = (subscriber: LivePointerSubscriber) => {
-  const index = livePointerSubscribers.indexOf(subscriber);
-  if (index === -1) return;
-  livePointerSubscribers.splice(index, 1);
+  livePointerSubscribers.delete(subscriber);
+  if (livePointerSubscribers.size === 0) {
+    window.removeEventListener('pointermove', handlePointerMove);
+  }
 };
 
-window.addEventListener('pointermove', (evt) => {
+const handlePointerMove = (evt: PointerEvent) => {
   livePointerSubscribers.forEach((subscriber) => subscriber(evt.clientX, evt.clientY));
-});
+};

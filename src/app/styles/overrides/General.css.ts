@@ -28,8 +28,8 @@ globalStyle(
 
 globalStyle(
   `
-    button:hover:not(div[class*='SidebarItem_SidebarItem'] button):not(div[class*='SidebarFolder_SidebarFolder'] button), 
-    [role="button"]:hover:not(div[class*='SidebarItem_SidebarItem'] [role="button"]):not(div[class*='SidebarFolder_SidebarFolder'] [role="button"])
+    button:hover:not([data-sidebar-item] button):not([data-sidebar-folder] button), 
+    [role="button"]:hover:not([data-sidebar-item] [role="button"]):not([data-sidebar-folder] [role="button"])
 `,
   {
     transform: 'translateY(-1px)',
@@ -39,10 +39,10 @@ globalStyle(
 // :not here is a temporary way to sidestep this global imitation without affecting everything else.
 globalStyle(
   `
-    button[class*="_1684mq51"]:has(img):hover:not(div[class*='SidebarItem_SidebarItem'] button),
-    [data-index] [class*="_1r9nvaso"]:hover:not(div[class*='SidebarItem_SidebarItem'] [class*="_1r9nvaso"]),
-    [data-index] [class*="_1r9nvaso"] *:hover:not(div[class*='SidebarItem_SidebarItem'] [class*="_1r9nvaso"] *),
-    [data-index] button:has(p):hover:not(div[class*='SidebarItem_SidebarItem'] button)
+    button[class*="_1684mq51"]:has(img):hover:not([data-sidebar-item] button),
+    [data-index] [class*="_1r9nvaso"]:hover:not([data-sidebar-item] [class*="_1r9nvaso"]),
+    [data-index] [class*="_1r9nvaso"] *:hover:not([data-sidebar-item] [class*="_1r9nvaso"] *),
+    [data-index] button:has(p):hover:not([data-sidebar-item] button)
 `,
   {
     transform: 'none !important',
