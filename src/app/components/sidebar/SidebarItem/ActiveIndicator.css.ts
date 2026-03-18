@@ -12,4 +12,9 @@ export const ActiveIndicator = style({
   transition: 'top 200ms ease, opacity 200ms ease',
   opacity: 0,
   zIndex: 0,
+  '@media': {
+    '(prefers-reduced-motion: reduce)': {
+      transition: 'none',
+    },
+  },
 });

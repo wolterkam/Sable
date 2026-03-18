@@ -1,4 +1,4 @@
-import { ComponentProps, useEffect, useRef } from 'react';
+import { ComponentProps, useEffect, useRef, useState } from 'react';
 import { subscribeToLivePointer, unsubscribeFromLivePointer } from '$utils/livePointerTracker';
 
 type BackgroundGlowProps = ComponentProps<'div'> & {
@@ -8,8 +8,23 @@ type BackgroundGlowProps = ComponentProps<'div'> & {
 export function BackgroundGlow({ color, style, ...props }: BackgroundGlowProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const internalGlowRef = useRef<HTMLDivElement>(null);
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
 
   useEffect(() => {
+    const media = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const update = () => setPrefersReducedMotion(media.matches);
+
+    update();
+    media.addEventListener('change', update);
+
+    return () => {
+      media.removeEventListener('change', update);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (prefersReducedMotion) return undefined;
+
     const handlePointer = (x: number, y: number) => {
       if (!internalGlowRef.current) return;
       const parentRect = containerRef.current?.getBoundingClientRect();
@@ -23,7 +38,11 @@ export function BackgroundGlow({ color, style, ...props }: BackgroundGlowProps) 
     return () => {
       unsubscribeFromLivePointer(handlePointer);
     };
-  }, []);
+  }, [prefersReducedMotion]);
+
+  if (prefersReducedMotion) {
+    return null;
+  }
 
   return (
     <div

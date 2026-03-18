@@ -12,6 +12,11 @@ export const SidebarAvatar = recipe({
         },
         'button&:hover': {
           transform: 'scale(1.1)',
+          '@media': {
+            '(prefers-reduced-motion: reduce)': {
+              transform: 'none',
+            },
+          },
         },
       },
     },
