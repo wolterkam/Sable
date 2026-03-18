@@ -7,7 +7,7 @@ export const SidebarFolder = recipe({
   base: [
     ContainerColor({ variant: 'Background' }),
     {
-      padding: config.space.S100,
+      padding: config.space.S200,
       width: '100%',
       display: 'flex',
       flexWrap: 'wrap',
